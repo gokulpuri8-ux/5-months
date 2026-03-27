@@ -133,7 +133,7 @@ setInterval(() => {
   <h2>Enter Our Secret ❤️</h2>
   <p>Only you know this secret 💌</p>
   <input type="password" id="pass" placeholder="Our special date ❤️">
-  <button onclick="check()">Open ❤️</button>
+  <button onclick="startExperience()">Open ❤️</button>
 </div>
 
 <!-- 💞 INTRO -->
@@ -173,14 +173,15 @@ setInterval(() => {
 
 <script>
 
-/* LOADING TO LOGIN */
+/* LOADING */
 setTimeout(() => {
   show("login");
 }, 3000);
 
-/* MUSIC FADE */
-function playMusicSmooth(){
+/* START EXPERIENCE (FIXED MUSIC) */
+function startExperience(){
   let music = document.getElementById("music");
+
   music.volume = 0;
   music.play();
 
@@ -193,13 +194,14 @@ function playMusicSmooth(){
       clearInterval(fade);
     }
   }, 300);
+
+  check();
 }
 
 /* PASSWORD */
 function check(){
   let p=document.getElementById("pass").value;
   if(p==="2710"){
-    playMusicSmooth();
     show("intro");
     setTimeout(()=>show("page1"),5000);
   } else alert("Wrong password 😢");
