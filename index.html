@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Basuri ❤️</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  overflow: hidden;
+  background: black;
+  color: white;
+  text-align: center;
+}
+
+.page {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.active {
+  display: flex;
+  animation: fade 1s ease;
+}
+
+@keyframes fade {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+/* LOADING */
+#loadingText {
+  font-size: 28px;
+  opacity: 0;
+  animation: fadeIn 2s ease forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* BUTTON */
+button {
+  padding: 12px 25px;
+  border-radius: 25px;
+  border: none;
+  background: red;
+  color: white;
+  font-size: 16px;
+  margin-top: 15px;
+}
+
+/* TYPE */
+.type {
+  border-right: 2px solid white;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  animation: typing 4s steps(40,end) forwards, blink 0.7s infinite;
+}
+
+@keyframes typing { from {width:0;} to {width:100%;} }
+@keyframes blink {50%{border-color:transparent;}}
+
+/* HEARTS */
+.heart {
+  position: absolute;
+  color: red;
+  animation: float 5s linear infinite;
+}
+@keyframes float {
+  from {transform:translateY(100vh);}
+  to {transform:translateY(-10vh);}
+}
+
+/* IMAGE */
+img {
+  width: 260px;
+  height: 320px;
+  border-radius: 15px;
+  object-fit: cover;
+}
+
+/* LOVE POP */
+#loveText {
+  opacity: 0;
+  transform: scale(0.5);
+  animation: pop 1s ease forwards;
+  animation-delay: 2s;
+}
+
+@keyframes pop {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎬 LOADING -->
+<div id="loading" class="page active">
+  <h1 id="loadingText">5 Months With You ❤️</h1>
+</div>
+
+<!-- 🎵 MUSIC -->
+<audio id="music" loop>
+  <source src="bairan.mp3" type="audio/mp3">
+</audio>
+
+<!-- ❤️ HEARTS -->
+<script>
+setInterval(() => {
+  let h = document.createElement("div");
+  h.className = "heart";
+  h.innerHTML = "❤️";
+  h.style.left = Math.random()*100+"vw";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),5000);
+},300);
+</script>
+
+<!-- 🔐 LOGIN -->
+<div id="login" class="page">
+  <h2>Enter Our Secret ❤️</h2>
+  <p>Only you know this secret 💌</p>
+  <input type="password" id="pass" placeholder="Our special date ❤️">
+  <button onclick="check()">Open ❤️</button>
+</div>
+
+<!-- 💞 INTRO -->
+<div id="intro" class="page">
+  <h1 class="type">Basuri ❤️ Gokul</h1>
+</div>
+
+<!-- 💌 MESSAGE -->
+<div id="page1" class="page">
+  <h1>To My Beautiful Basuri ❤️</h1>
+  <p class="type">Sometimes I sit and try to find the right words…</p>
+  <p>
+    You’re not just someone I love…<br>
+    You’re my peace, my comfort, my everything ❤️<br><br>
+
+    <b>Happy 5 Months Anniversary Basuri ❤️</b><br><br>
+
+    Thank you for choosing me every day ❤️
+  </p>
+  <button onclick="next('page2')">Next ❤️</button>
+</div>
+
+<!-- 📸 PHOTO -->
+<div id="page2" class="page">
+  <h2>Only one thing comes in my mind…</h2>
+  <h1 id="loveText">I LOVE YOU ❤️</h1>
+
+  <img src="photo.jpg">
+
+  <button onclick="next('final')">Last ❤️</button>
+</div>
+
+<!-- 🎆 FINAL -->
+<div id="final" class="page">
+  <h1>Forever Yours ❤️</h1>
+</div>
+
+<script>
+
+/* LOADING TO LOGIN */
+setTimeout(() => {
+  show("login");
+}, 3000);
+
+/* MUSIC FADE */
+function playMusicSmooth(){
+  let music = document.getElementById("music");
+  music.volume = 0;
+  music.play();
+
+  let vol = 0;
+  let fade = setInterval(() => {
+    if(vol < 1){
+      vol += 0.05;
+      music.volume = vol;
+    } else {
+      clearInterval(fade);
+    }
+  }, 300);
+}
+
+/* PASSWORD */
+function check(){
+  let p=document.getElementById("pass").value;
+  if(p==="2710"){
+    playMusicSmooth();
+    show("intro");
+    setTimeout(()=>show("page1"),5000);
+  } else alert("Wrong password 😢");
+}
+
+/* PAGE SWITCH */
+function show(id){
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+}
+
+/* BEAT SYNC */
+function next(id){
+  if(id === "final"){
+    setTimeout(()=>show(id), 2000);
+  } else {
+    show(id);
+  }
+}
+</script>
+
+</body>
+</html>
